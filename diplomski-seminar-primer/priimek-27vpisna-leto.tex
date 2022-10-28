@@ -1,10 +1,6 @@
 % !TeX spellcheck = sl_SI
-\documentclass[mat1]{fmfdelo}
-% \documentclass[fin1]{fmfdelo}
-% \documentclass[isrm1]{fmfdelo}
-% \documentclass[mat2]{fmfdelo}
-% \documentclass[fin2]{fmfdelo}
-% \documentclass[isrm2]{fmfdelo}
+\documentclass[mat1]{../fmfdelo}
+% \documentclass[fin1]{../fmfdelo}
 
 % naslednje ukaze ustrezno napolnite
 \avtor{Ime Priimek}
@@ -16,12 +12,12 @@
 % uporabite le tisti ukaz/ukaze, ki je/so za vas ustrezni
 % \mentor{izr.~prof.~dr.~Ime Priimek}
 \mentorica{izr.~prof.~dr.~Ime Priimek}
-\somentor{doc.~dr.~Ime Priimek}
-%\somentorica{doc.~dr.~Ime Priimek}
 % \mentorja{}{}
 % \mentorici{}{}
+\somentor{doc.~dr.~Ime Priimek}
+%\somentorica{doc.~dr.~Ime Priimek}
 
-\letnica{2016} % leto diplome
+\letnica{2022} % leto diplome
 
 %  V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela --
 %  v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
@@ -35,8 +31,8 @@ vsebine.}
 % navedite vsaj eno klasifikacijsko oznako --
 % dostopne so na www.ams.org/mathscinet/msc/msc2010.html
 \klasifikacija{navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}}
-\kljucnebesede{naravni logaritem\sep nenaravni algoritem} % navedite nekaj ključnih besed, ki nastopajo v delu, ločenih s \sep
-\keywords{natural logarithm\sep unnatural algorithm} % angleški prevod ključnih besed
+\kljucnebesede{beseda1\sep beseda2} % navedite nekaj ključnih pojmov, ki nastopajo v delu
+\keywords{angleški prevod ključnih besed} % angleški prevod ključnih besed
 
 % aktivirajte pakete, ki jih potrebujete
 % \usepackage{tikz}
@@ -45,9 +41,10 @@ vsebine.}
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\Z}{\mathbb Z}
-% Lahko dobite napako se zgodi, da je ukaz \C definiral že paket hyperref,
-% zato dobite napako: Command \C already defined.
-% V tem primeru namesto ukaza \newcommand uporabite \renewcommand
+% Nekatere različice paketa hyperref definirajo ukaz \C, zato ga moramo odstraniti,
+% če ga želimo uporabljati za kompleksna števila. Ukaz \renewcommand tu ne deluje,
+% saj nekatere različice tega ukaza ne definirajo.
+\let\C\undefined
 \newcommand{\C}{\mathbb C}
 \newcommand{\Q}{\mathbb Q}
 

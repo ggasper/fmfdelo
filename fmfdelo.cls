@@ -28,12 +28,11 @@
 
 % brezpaketov: neobveznih paketov ne nalozimo
 \DeclareOption{brezpaketov}{\setboolean{@brezpaketov}{true}}
-\DeclareOption{mat1}{\def\@program{Matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
-\DeclareOption{fin1}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
-\DeclareOption{isrm1}{\def\@program{Interdisciplinarni \v{s}tudij ra\v{c}unalni\v{s}tva in matematike}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}}
-\DeclareOption{mat2}{\def\@program{Matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}}
-\DeclareOption{fin2}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}}
-\DeclareOption{isrm2}{\def\@program{Interdisciplinarni \v{s}tudij ra\v{c}unalni\v{s}tva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}}
+\DeclareOption{mat1}{\def\@program{Matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}\def\@organizacija{Univerza v Ljubljani, Fakulteta za matematiko in fiziko}}
+\DeclareOption{fin1}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{1.~stopnja}\def\@tipdela{Delo diplomskega seminarja}\def\@organizacija{Univerza v Ljubljani, Fakulteta za matematiko in fiziko}}
+\DeclareOption{mat2}{\def\@program{Matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\def\@organizacija{Univerza v Ljubljani, Fakulteta za matematiko in fiziko}}
+\DeclareOption{fin2}{\def\@program{Finan\v{c}na matematika}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\def\@organizacija{Univerza v Ljubljani, Fakulteta za matematiko in fiziko}}
+\DeclareOption{isrm2}{\def\@program{Interdisciplinarni \v{s}tudij ra\v{c}unalni\v{s}tva in matematike}\def\@stopnja{2.~stopnja}\def\@tipdela{Magistrsko delo}\def\@organizacija{Univerza v Ljubljani, Fakulteta za matematiko in fiziko, Fakulteta za računalništvo in informatiko}}
 
 % vse ostale moznosti (fleqn, twocolumn, ...) podamo naprej v paket article
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{amsart}}
@@ -74,8 +73,8 @@
 \evensidemargin.5cm
 \topmargin-5mm
 \addtolength{\footskip}{10pt}
-\pagestyle{plain}
-\overfullrule=15pt
+\pagestyle{plain} % samo številka strani na dnu, nobene glave / noge
+\overfullrule=30pt % označi predlogo vrstico
 
 %-----------------------------------------------------------------------------
 %                             Oblikovanje glave
@@ -112,7 +111,9 @@
 \newtheorem{primer*}[definicija]{Primer}
 \newtheorem{opomba}[definicija]{Opomba}
 \newtheorem{zgled*}[definicija]{Zgled}
+\newtheorem{aksiom}{Aksiom}
 
+\numberwithin{equation}{section}  % števec za enačbe zgleda kot (2.7) in se resetira v vsakem razdelku
 \newenvironment{dokaz}[1][Dokaz]{\begin{proof}[#1]}{\end{proof}}
 \newenvironment{primer}[1][]{\begin{primer*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}}{\popQED\end{primer*}}
 \newenvironment{zgled}[1][]{\begin{zgled*}[#1]\renewcommand*{\qedsymbol}{$\diamondsuit$}\pushQED{\qed}}{\popQED\end{zgled*}}
@@ -124,8 +125,6 @@
 \newtheorem{posledica}[definicija]{Posledica}
 % ukaz za slovarsko geslo
 \newcommand{\geslo}[2]{\noindent\textbf{#1}\hspace*{3mm}\hangindent=\parindent\hangafter=1 #2\par}
-\newcommand{\@presledek}{ }
-\def\sep{\protect\sep\@presledek}
 
 \AtEndPreamble{%
 \newoutputstream{xmpdatafile}
@@ -135,12 +134,13 @@
 \protect\Author{\@avtor}
 \protect\Keywords{\@kljucnebesede}
 \protect\Subject{matematika}
+\protect\Org{\@organizacija}
 }
 }
 
 % Ukaz za izpis začetnih strani.
 \AfterEndPreamble{%
-\def\sep{, }
+
 % od tod do povzetka ne spreminjaj nicesar
 \thispagestyle{empty}
 \noindent{\large
@@ -162,10 +162,34 @@ FAKULTETA ZA MATEMATIKO IN FIZIKO\\[5mm]
 Ljubljana, \@letnica}
 \pagebreak
 
+\pdfbookmark[1]{Zahvala}{zahvala} %
+\section*{Zahvala}
+Neobvezno.
+Zahvaljujem se \dots
+
 \thispagestyle{empty}
 \tableofcontents
-\vfill
 \pagebreak
+
+\section*{Program dela}
+\addcontentsline{toc}{section}{Program dela} % dodajmo v kazalo
+Mentor naj napiše program dela skupaj z osnovno literaturo. Na literaturo se
+lahko sklicuje kot~\cite{lebedev2009introduction}, \cite{gurtin1982introduction},
+\cite{zienkiewicz2000finite}, \cite{STtemplate}.
+
+\section*{Osnovna literatura}
+Literatura mora biti tukaj posebej samostojno navedena (po pomembnosti) in ne
+le citirana. V tem razdelku literature ne oštevilčimo po svoje, ampak uporabljamo
+okolje itemize in ukaz plancite, saj je celotna literatura oštevilčena na koncu.
+% \begin{itemize}
+%   \plancite{lebedev2009introduction}
+%   \plancite{gurtin1982introduction}
+%   \plancite{zienkiewicz2000finite}
+%   \plancite{STtemplate}
+% \end{itemize}
+
+\vspace{2cm}
+\hspace*{\fill} Podpis mentorja: \phantom{prostor za podpis}
 
 \thispagestyle{empty}
 \begin{center}

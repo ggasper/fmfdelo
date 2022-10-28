@@ -1,48 +1,81 @@
 % !TeX spellcheck = sl_SI
 % vim: set spell spelllang=sl:
 % za preverjanje črkovanja, če se uporablja Texstudio ali vim
-\documentclass[12pt,a4paper,twoside]{article}
-\usepackage[utf8]{inputenc}  % pravilno razpoznavanje unicode znakov
 
-% NASLEDNJE UKAZE USTREZNO POPRAVI
-\newcommand{\program}{Matematika} % ime studijskega programa
-\newcommand{\imeavtorja}{Marija Novak} % ime avtorja
-\newcommand{\imementorja}{prof.~dr.~Janez Novak} % akademski naziv in ime mentorja, uporabi poln naziv, prof.~dr.~, doc.~dr., ali izr.~prof.~dr.
-\newcommand{\imesomentorja}{} % akademski naziv in ime somentorja, če ga imate
-\newcommand{\naslovdela}{Naslov vašega dela}
-\newcommand{\letnica}{2017} % letnica magistriranja
-\newcommand{\opis}{Delo obravnava integracijo po ω-kompleksih, njene lastnosti in posplošitve
-na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati matematičnih simbolov v $ $.
-\newcommand{\kljucnebesede}{integracija\sep kompleks} % ključne besede, ločene z \sep, da se PDF metapodatki prav procesirajo
-\newcommand{\keywords}{integration\sep complex} % ključne besede v angleščini
-\newcommand{\organization}{Univerza v Ljubljani, Fakulteta za matematiko in fiziko} % fakulteta
-\newcommand{\literatura}{literatura}  % pot do datoteke z literaturo (brez .bib končnice)
-\newcommand{\sep}{, }  % separator med ključnimi besedami v besedilu
+\documentclass[mat2]{../fmfdelo}
+% \documentclass[fin2]{../fmfdelo}
+% \documentclass[isrm2]{../fmfdelo}
+
+% naslednje ukaze ustrezno napolnite
+\avtor{Ime Priimek}
+\naslov{Naslov dela}
+\title{Angleški prevod slovenskega naslova dela}
+
+% navedite ime mentorja s polnim nazivom: doc.~dr.~Ime Priimek,
+% izr.~prof.~dr.~Ime Priimek, prof.~dr.~Ime Priimek
+% uporabite le tisti ukaz/ukaze, ki je/so za vas ustrezni
+% \mentor{izr.~prof.~dr.~Ime Priimek}
+\mentorica{izr.~prof.~dr.~Ime Priimek}
+% \mentorja{}{}
+% \mentorici{}{}
+\somentor{doc.~dr.~Ime Priimek}
+%\somentorica{doc.~dr.~Ime Priimek}
+
+\letnica{2022} % leto magisterija
+
+%  V povzetku na kratko opišite vsebinske rezultate dela. Sem ne sodi razlaga organizacije dela --
+%  v katerem poglavju/razdelku je kaj, pač pa le opis vsebine.
+\povzetek{V povzetku na kratko opišemo vsebinske rezultate dela. Sem ne sodi
+razlaga organizacije dela -- v katerem poglavju/razdelku je kaj, pač pa le opis
+vsebine.}
+
+%  Prevod slovenskega povzetka v angleščino.
+\abstract{Prevod slovenskega povzetka v angleščino.}
+
+% navedite vsaj eno klasifikacijsko oznako --
+% dostopne so na www.ams.org/mathscinet/msc/msc2010.html
+\klasifikacija{navedite vsaj eno klasifikacijsko oznako -- dostopne so na \url{www.ams.org/mathscinet/msc/msc2010.html}}
+\kljucnebesede{navedite nekaj ključnih pojmov, ki nastopajo v delu} % navedite nekaj ključnih pojmov, ki nastopajo v delu
+\keywords{angleški prevod ključnih besed} % angleški prevod ključnih besed
+
+% aktivirajte pakete, ki jih potrebujete
+% \usepackage{tikz}
+
+% za številske množice uporabite naslednje simbole
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+% Nekatere različice paketa hyperref definirajo ukaz \C, zato ga moramo odstraniti,
+% če ga želimo uporabljati za kompleksna števila. Ukaz \renewcommand tu ne deluje,
+% saj nekatere različice tega ukaza ne definirajo.
+\let\C\undefined
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+
+% matematične operatorje deklarirajte kot take, da jih bo Latex pravilno stavil
+% \DeclareMathOperator{\conv}{conv}
+% na razpolago so naslednja matematična okolja, ki jih kličemo s parom
+% \begin{imeokolja}[morebitni komentar v oklepaju] ... \end{imeokolja}
+%
+% definicija, opomba, primer, zgled, lema, trditev, izrek, posledica, dokaz
+%
+
+% vstavite svoje definicije ...
+%  \newcommand{}{}
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
+
+% \newcommand{\kljucnebesede}{integracija\sep kompleks} % ključne besede, ločene z \sep, da se PDF metapodatki prav procesirajo
+% \newcommand{\keywords}{integration\sep complex} % ključne besede v angleščini
+% \newcommand{\sep}{, }  % separator med ključnimi besedami v besedilu
 % KONEC PODATKOV
 
 \usepackage{bibentry}         % za navajanje literature v programu dela s celim imenom
 \nobibliography{\literatura}
 \newcommand{\plancite}[1]{\item[\cite{#1}] \bibentry{#1}} % citiranje v programu dela
 
-\usepackage{filecontents}  % za pisanje datoteke s PDF metapodatki
-\usepackage{silence} \WarningFilter{latex}{Overwriting file}  % odstrani annoying warning o obstoju datoteke
-% datoteka s PDF metapodatki, zgenerira se kot magisterij.xmpdata
-\begin{filecontents*}{\jobname.xmpdata}
-  \Title{\naslovdela}
-  \Author{\imeavtorja}
-  \Keywords{\kljucnebesede}
-  \Subject{matematika}
-  \Org{\organization}
-\end{filecontents*}
-
-\usepackage[a-1b]{pdfx}  % zgenerira PDF v tem PDF/A-1b formatu, kot zahteva knjižnica
-\hypersetup{bookmarksopen, bookmarksdepth=3, colorlinks=true,
-  linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black,
-  menucolor=black, runcolor=black, urlcolor=black, pdfencoding=auto,
-  breaklinks=true, psdextra}
-
-\usepackage[slovene]{babel}  % slovenščina
-\usepackage[T1]{fontenc}     % naprednejše kodiranje fonta
 \usepackage{amsmath,amssymb,amsfonts,amsthm} % matematični paketi
 \usepackage{graphicx}     % za slike
 \usepackage{emptypage}    % prazne strani so neoštevilčene, ampak so štete
@@ -78,31 +111,6 @@ na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati m
 % DRUGI TVOJI PAKETI:
 % tukaj
 
-\setlength{\overfullrule}{50pt} % označi predlogo vrstico
-\pagestyle{plain}               % samo številka strani na dnu, nobene glave / noge
-
-% ukazi za matematična okolja
-\theoremstyle{definition} % tekst napisan pokončno
-\newtheorem{definicija}{Definicija}[section]
-\newtheorem{primer}[definicija]{Primer}
-\newtheorem{opomba}[definicija]{Opomba}
-\newtheorem{aksiom}{Aksiom}
-
-\theoremstyle{plain} % tekst napisan poševno
-\newtheorem{lema}[definicija]{Lema}
-\newtheorem{izrek}[definicija]{Izrek}
-\newtheorem{trditev}[definicija]{Trditev}
-\newtheorem{posledica}[definicija]{Posledica}
-
-\numberwithin{equation}{section}  % števec za enačbe zgleda kot (2.7) in se resetira v vsakem poglavju
-
-% Matematični ukazi
-\newcommand{\R}{\mathbb R}
-\newcommand{\N}{\mathbb N}
-\newcommand{\Z}{\mathbb Z}
-\renewcommand{\C}{\mathbb C}
-\newcommand{\Q}{\mathbb Q}
-
 % \DeclareMathOperator{\tr}{tr}  % morda potrebuješ operator za sled ali kaj drugega?
 
 % bold matematika znotraj \textbf{ }, tudi v naslovih, kot \omega spodaj
@@ -120,6 +128,10 @@ na Levy-jeve topološke prostore.}  % Opis dela v eni povedi. Ne sme vsebovati m
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%           DOCUMENT           %%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% =============================================================================
+% =============================================================================
+% =============================================================================
 
 \begin{document}
 
